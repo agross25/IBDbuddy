@@ -36,11 +36,22 @@ class LogManager: ObservableObject {
         }
     
     /// Subset of logs from past 7 days (including today)
+//    var last7Days: [DailyLog] {
+//        let cal = Calendar.current
+//        let weekAgo = cal.startOfDay(for: Date()).addingTimeInterval(-6 * 24*60*60)
+//        return logs.filter { cal.startOfDay(for: $0.date) >= weekAgo }
+//    }
     var last7Days: [DailyLog] {
-        let cal = Calendar.current
-        let weekAgo = cal.startOfDay(for: Date()).addingTimeInterval(-6 * 24*60*60)
-        return logs.filter { cal.startOfDay(for: $0.date) >= weekAgo }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        return (0..<7).compactMap { offset in
+            let day = calendar.date(byAdding: .day, value: -offset, to: today)!
+            let match = logs.first { calendar.isDate($0.date, inSameDayAs: day) }
+            return match ?? DailyLog(date: day, sleepHours: 0, exerciseMins: 0, calories: 0)
+        }.reversed()
     }
+
     
     // - - - Functions - - -
     
@@ -73,6 +84,24 @@ class LogManager: ObservableObject {
         if let encoded = try? JSONEncoder().encode(logs) {
             UserDefaults.standard.set(encoded, forKey: logsKey)
         }
+    }
+    
+    /// Fills log array for testing
+    func generateMockWeek() {
+        let calendar = Calendar.current
+        logs = (0..<7).map { offset in /// Creates 7-day range, maps each number as a DailyLog
+            let date = calendar.date(byAdding: .day, value: -offset, to: Date())!
+            /// subtracts offsets days from today
+            return DailyLog(
+                /// sets random values for some days, some set to 0
+                date: date,
+                sleepHours: offset == 1 ? 0 : Double.random(in: 5...9),
+                exerciseMins: offset == 2 ? 0 : Int.random(in: 0...60),
+                calories: offset == 3 ? 0 : Int.random(in: 1500...2500)
+            )
+        }.reversed() /// places oldest day first, latest day last
+            
+        saveLogs() /// saves to UserDefaults - not needed for testing
     }
 
 }
