@@ -14,6 +14,13 @@ class LogManager: ObservableObject {
     /// Key enables saving/reading info to/from UserDefaults
     private let logsKey = "allLogs" // accesses all weekly logs
     
+    /// Formats days by shortened weekday name
+    let weekdayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE"
+        return formatter
+    }()
+    
     init() {
         loadLogs() // load the saved array
         // called when LogManager is instantiated
@@ -35,12 +42,6 @@ class LogManager: ObservableObject {
         return diff == 0 ? nil : diff
         }
     
-    /// Subset of logs from past 7 days (including today)
-//    var last7Days: [DailyLog] {
-//        let cal = Calendar.current
-//        let weekAgo = cal.startOfDay(for: Date()).addingTimeInterval(-6 * 24*60*60)
-//        return logs.filter { cal.startOfDay(for: $0.date) >= weekAgo }
-//    }
     var last7Days: [DailyLog] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
