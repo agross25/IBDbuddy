@@ -36,20 +36,10 @@ struct DataView: View {
                 Spacer()
                 
                 VStack {
-                    Spacer(minLength: 30) /// Leave space for the notch
+                    Spacer(minLength: 15) /// Leave space for the notch
                     
                     ZStack {
-                        /// Rounded background container
-                        RoundedRectangle(cornerRadius: 30)
-                            .fill(Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4))
-                            .background(.ultraThinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 30))
-                            .shadow(radius: 5)
-                            .padding(.horizontal, 30)
-                            .padding(.vertical)
-                            .frame(maxHeight: 700)
-                        
-                        VStack(spacing: 16) {
+                        VStack(spacing: 30) {
                             // Sleep Chart
                             VStack(alignment: .leading) {
                                 Text("Hours of Sleep:").font(.headline)
@@ -91,6 +81,8 @@ struct DataView: View {
                                 .frame(height: 120)
                             }
                             .padding(.horizontal, 40)
+                            .padding(.vertical, 10)
+                            .border(.gray, width: 3)
                             
                             // Exercise Chart
                             VStack(alignment: .leading) {
@@ -132,6 +124,8 @@ struct DataView: View {
                                 .frame(height: 120)
                             }
                             .padding(.horizontal, 40)
+                            .padding(.vertical, 10)
+                            .border(.gray, width: 3)
                             
                             // Calories Chart
                             VStack(alignment: .leading) {
@@ -175,6 +169,8 @@ struct DataView: View {
                                 .frame(height: 120)
                             }
                             .padding(.horizontal, 40)
+                            .padding(.vertical, 10)
+                            .border(.gray, width: 3)
                             
                             Spacer()
                         }
@@ -184,12 +180,12 @@ struct DataView: View {
                 .padding()
             }
         }
-        .padding(.bottom, 20)
         .onAppear {
             if logManager.logs.isEmpty {
                 logManager.generateMockWeek()
             }
         }
+        .padding(.bottom, 20)
     }
 }
 
