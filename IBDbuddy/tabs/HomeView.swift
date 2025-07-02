@@ -9,24 +9,26 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var logManager: LogManager
-    // @AppStorage("latestLog") private var latestLogData: Data = Data()
     @State private var mood: Mood = .fine
     
     var body: some View {
-        VStack {
-            Spacer(minLength: 30) /// Leave space for the notch
+        ZStack {
+            // Background color fills entire screen
+            Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.5).ignoresSafeArea()
             
-            ZStack {
-                /// Rounded background container
-                RoundedRectangle(cornerRadius: 30)
-                    .fill(Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4))
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
-                    .shadow(radius: 5)
-                    .padding(.horizontal, 30)
-                    .padding(.vertical)
-                    .frame(maxHeight: 670)
-                
+            VStack(spacing: 0) {
+                // Header at the top
+                Text("Your IBD Buddy")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.2))
+                    .shadow(radius: 3)
+
+                Spacer()
+            
+                // 🧍 Avatar Display
                 VStack(spacing: 16) {
                     Image(mood.rawValue)
                         .resizable()
