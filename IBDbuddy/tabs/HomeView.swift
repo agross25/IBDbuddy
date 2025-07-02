@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             // Background color fills entire screen
-            Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.5).ignoresSafeArea()
+            Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4).ignoresSafeArea()
             
             VStack(spacing: 0) {
                 // Header at the top
@@ -23,7 +23,7 @@ struct HomeView: View {
                     .bold()
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.2))
+                    .background(Color(red: 1.0, green: 0.9, blue: 0.8))
                     .shadow(radius: 3)
 
                 Spacer()
@@ -40,6 +40,7 @@ struct HomeView: View {
             }
             Spacer()
         }
+        .padding(.bottom) // space above tab bar
         .onAppear {
             // Pull the very last log, if any, otherwise default mood:
             if let lastLog = logManager.logs.last {
