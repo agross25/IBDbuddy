@@ -17,7 +17,7 @@ struct HomeView: View {
             Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Header at the top
+                // Header fixed at the top
                 Text("Your IBD Buddy")
                     .font(.title)
                     .bold()
@@ -35,12 +35,15 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: 300, height: 300)
                     Text("Buddy is feeling \(mood.rawValue) today!").font(.headline)
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.center)
                 }
                 .padding()
+                Spacer()
             }
             Spacer()
         }
-        .padding(.bottom) // space above tab bar
+        .padding(.bottom, 20) // space above tab bar
         .onAppear {
             // Pull the very last log, if any, otherwise default mood:
             if let lastLog = logManager.logs.last {
@@ -49,7 +52,6 @@ struct HomeView: View {
                 mood = .fine
             }
         }
-       
         // Also respond live to new logs:
         .onChange(of: logManager.logs) { _ in
             if let lastLog = logManager.logs.last {
