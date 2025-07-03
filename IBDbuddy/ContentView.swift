@@ -27,12 +27,18 @@ struct ContentView: View {
                     Label("Daily Log", systemImage: "checklist")
                 }
                 .tag(1)
+            MindView()
+                .background(Color.clear)
+                .tabItem {
+                    Label("Mind", systemImage: "brain")
+                }
+                .tag(2)
             DataView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Stats", systemImage: "list.clipboard")
                 }
-                .tag(2)
+                .tag(3)
         }
         // Inject the manager into every child view:
         .environmentObject(logManager)
