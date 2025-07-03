@@ -18,24 +18,41 @@ struct LogView: View {
     // @AppStorage("latestLog") private var latestLogData: Data = Data()
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             // Background color fills entire screen
             Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Header fixed at the top
-                Text("Your Daily Log")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color(red: 1.0, green: 0.9, blue: 0.8))
-                    .shadow(radius: 3)
-                
+                HStack {
+                    Spacer(minLength: 20)
+                    
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                    }
+
+                    Text("Your Daily Log")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .shadow(radius: 3)
+
+                    Spacer(minLength: 40) // pushes everything left
+                }
+                .background(Color(red: 1.0, green: 0.9, blue: 0.8))
+                .shadow(radius: 3)
+                //.padding(.top,60)
+                .ignoresSafeArea(.all)
+                                
                 Spacer()
                 
                 /// Header Rectangle with Date
                 ZStack {
+                    /// Today's date
                     RoundedRectangle(cornerRadius: 30)
                         .fill(Color(red: 1.0, green: 0.7, blue: 0.36).opacity(0.5))
                         .background(.ultraThinMaterial)
@@ -97,7 +114,6 @@ struct LogView: View {
                 Spacer()
             }
         }
-        .padding(.bottom, 10) // space above tab bar
         /// as soon as VStack appears, checks log status
         .onAppear {
             _ = logManager.didLogToday

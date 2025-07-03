@@ -50,7 +50,7 @@ struct HomeView: View {
                 // Logging Section
                 VStack(spacing: 12) {
                     // Save Log Button
-                    Button("Save Log") {
+                    Button("Go To Daily Log") {
                         showLogView = true
                     }
                     .buttonStyle(.borderedProminent)
@@ -61,7 +61,7 @@ struct HomeView: View {
 
                     // Message
                     if logManager.didLogToday {
-                        Text("✅ Thank you for logging today!")
+                        Text("Thank you for logging today!")
                             .foregroundColor(.green)
                     } else if let days = logManager.daysSinceLastLog {
                         Text("It has been \(days) day\(days == 1 ? "" : "s") since your last log.")
