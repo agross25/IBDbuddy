@@ -84,6 +84,7 @@ struct MindView: View {
                                             .clipped()
                                             .cornerRadius(12)
                                             .shadow(radius: 5)
+                                            .opacity(0.65)
                                             
                                         Image(systemName: "play.circle")
                                             .resizable()
