@@ -46,6 +46,12 @@ struct ContentView: View {
                     Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
                 .tag(4)
+            BadgeView()
+                .background(Color.clear)
+                .tabItem {
+                    Label("Achievements", systemImage: "trophy")
+                }
+                .tag(5)
         }
         // Inject the manager into every child view:
         .environmentObject(logManager)
