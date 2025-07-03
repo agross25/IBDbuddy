@@ -22,36 +22,36 @@ struct ContentView: View {
                     Label("Home", systemImage: "house")
                 }
                 .tag(0)
-            LogView()
-                .background(Color.clear)
-                .tabItem {
-                    Label("Daily Log", systemImage: "list.clipboard")
-                }
-                .tag(1)
+//            LogView()
+//                .background(Color.clear)
+//                .tabItem {
+//                    Label("Daily Log", systemImage: "list.clipboard")
+//                }
+//                .tag(1)
             MindView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Mind", systemImage: "brain")
                 }
-                .tag(2)
+                .tag(1)
             BodyView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Body", systemImage: "figure.run")
                 }
-                .tag(3)
+                .tag(2)
             DataView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
-                .tag(4)
+                .tag(3)
             BadgeView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Achievements", systemImage: "trophy")
                 }
-                .tag(5)
+                .tag(4)
         }
         // Inject the manager into every child view:
         .environmentObject(logManager)

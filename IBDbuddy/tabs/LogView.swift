@@ -13,6 +13,7 @@ struct LogView: View {
     @State private var calories: Int = 1500
     @State private var isHovering = false /// enables button to change when mouse hovers
     @EnvironmentObject var logManager: LogManager
+    @Environment(\.dismiss) var dismiss
     
     // @AppStorage("latestLog") private var latestLogData: Data = Data()
     
@@ -52,9 +53,11 @@ struct LogView: View {
                     
                 }
                 
+                Spacer()
+                
                 /// Main Daily Log Box
                 ZStack {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 30) {
                         Section(header: Text("How well did you take care of yourself today?")
                             .font(.title3)
                             .bold()
@@ -79,28 +82,14 @@ struct LogView: View {
                                 calories: calories
                             )
                             logManager.addLog(newLog) /// saves today's date
+                            dismiss()
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(isHovering ? .orange.opacity(0.8) : .orange)
+                        .tint(isHovering ? .orange.opacity(0.6) : .orange)
                         .onHover { hovering in isHovering = hovering }
                         .disabled(logManager.didLogToday) // disable if already logged
                         .padding(.top)
-                        
-                        /// Display message to user
-                        if logManager.didLogToday {
-                            Text("Thank you for logging today! 😊")
-                                .foregroundColor(.green)
-                        }
-                        else if let days = logManager.daysSinceLastLog {
-                            Text("It has been \(days) day\(days == 1 ? "" : "s") since your last log.")
-                                .foregroundColor(.orange)
-                        }
-                        
-                        Button("🔄 Reset Log Status") {
-                            logManager.resetTodayStatus()
-                        }
-                        .font(.caption)
-                        .padding(.top, 8)
+                        .bold()
                     }
                     .padding(.horizontal, 40)
                     .padding(.vertical)
