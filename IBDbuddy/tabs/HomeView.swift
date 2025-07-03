@@ -28,7 +28,7 @@ struct HomeView: View {
 
                 Spacer()
             
-                // 🧍 Avatar Display
+                // Avatar Display
                 VStack(spacing: 16) {
                     Image(mood.rawValue)
                         .resizable()
