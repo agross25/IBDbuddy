@@ -108,7 +108,7 @@ struct LogView: View {
                 Spacer()
             }
         }
-        .padding(.bottom, 20) // space above tab bar
+        .padding(.bottom, 10) // space above tab bar
         /// as soon as VStack appears, checks log status
         .onAppear {
             _ = logManager.didLogToday

@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var selectedTab = 0
     
     var body: some View {
-        
+        // Main tab content
         TabView(selection: $selectedTab) {
             HomeView()
                 .background(Color.clear)
