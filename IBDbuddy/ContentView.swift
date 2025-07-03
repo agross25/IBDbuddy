@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @StateObject private var logManager = LogManager()
     @State var selectedTab = 0
     
@@ -42,6 +43,7 @@ struct ContentView: View {
         }
         // Inject the manager into every child view:
         .environmentObject(logManager)
+        .accentColor(Color(red: 1.0, green: 0.5, blue: 0.4))
     }
 }
 
