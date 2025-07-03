@@ -24,7 +24,7 @@ struct ContentView: View {
             LogView()
                 .background(Color.clear)
                 .tabItem {
-                    Label("Daily Log", systemImage: "checklist")
+                    Label("Daily Log", systemImage: "list.clipboard")
                 }
                 .tag(1)
             MindView()
@@ -36,7 +36,7 @@ struct ContentView: View {
             DataView()
                 .background(Color.clear)
                 .tabItem {
-                    Label("Stats", systemImage: "list.clipboard")
+                    Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
                 .tag(3)
         }
