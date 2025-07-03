@@ -1,41 +1,41 @@
 //
-//  MindView.swift
+//  BodyView.swift
 //  IBDbuddy
 //
 //  Created by Adina on 7/3/25.
 //
 import SwiftUI
 
-struct MindVideo: Identifiable {
+struct BodyVideo: Identifiable {
     let id = UUID()
     let title: String
     let thumbnailName: String // matches an image in Assets
     let youtubeURL: URL
 }
 
-struct MindView: View {
+struct BodyView: View {
     // Video data
     let videos = [
-        MindVideo(title: "Calm Body & Mind", thumbnailName: "CalmBody&Mind", youtubeURL: URL(string: "https://www.youtube.com/watch?v=a2pZOIzbp7Q")!),
-        MindVideo(title: "Overcoming Anxiety", thumbnailName: "OvercomingAnxiety", youtubeURL: URL(string: "https://www.youtube.com/watch?v=HT_ZvD94_kE")!),
-        MindVideo(title: "Envisioning Healing", thumbnailName: "EnvisioningHealing", youtubeURL: URL(string: "https://www.youtube.com/watch?v=35Y8JUNb2v4")!),
-        MindVideo(title: "Face Your Fears", thumbnailName: "FaceYourFears", youtubeURL: URL(string: "https://www.youtube.com/watch?v=HT_ZvD94_kE")!),
-        MindVideo(title: "Compassion", thumbnailName: "Compassion", youtubeURL: URL(string: "https://www.youtube.com/watch?v=-d_AA9H4z9U")!),
-        MindVideo(title: "Clear Your Mind", thumbnailName: "ClearYourMind", youtubeURL: URL(string: "https://www.youtube.com/watch?v=uTN29kj7e-w")!),
-        MindVideo(title: "Deep Sleep", thumbnailName: "DeepSleep", youtubeURL: URL(string: "https://www.youtube.com/watch?v=s9WPtnC_vGQ")!),
-        MindVideo(title: "Pain & Discomfort", thumbnailName: "Pain&Discomfort", youtubeURL: URL(string: "https://www.youtube.com/watch?v=L3-SlMJHrms")!),
-        MindVideo(title: "Accepting Anger", thumbnailName: "AcceptingAnger", youtubeURL: URL(string: "https://www.youtube.com/watch?v=z4nPkS5Gz5Y")!),
-        MindVideo(title: "Reframing", thumbnailName: "Reframing", youtubeURL: URL(string: "https://www.youtube.com/watch?v=Ae82GzZs44k")!),
-        MindVideo(title: "Morning Calm", thumbnailName: "MorningCalm", youtubeURL: URL(string: "https://www.youtube.com/watch?v=nSBGjaDpdY8")!),
-        MindVideo(title: "Presence", thumbnailName: "Presence", youtubeURL: URL(string: "https://www.youtube.com/watch?v=Bp89OCfXcWI")!)
+        BodyVideo(title: "20 Min Cardio HIIT", thumbnailName: "workout1", youtubeURL: URL(string: "https://www.youtube.com/watch?v=FeR-4_Opt-g")!),
+        BodyVideo(title: "30 Min Cardio HIIT", thumbnailName: "workout2", youtubeURL: URL(string: "https://www.youtube.com/watch?v=n_cIBBDb9JA")!),
+        BodyVideo(title: "20 Min Step to the Beat", thumbnailName: "workout3", youtubeURL: URL(string: "https://www.youtube.com/watch?v=y3KwVF-aBNQ")!),
+        BodyVideo(title: "30 Min Full Body Strength", thumbnailName: "workout4", youtubeURL: URL(string: "https://www.youtube.com/watch?v=9FBIaqr7TjQ")!),
+        BodyVideo(title: "20 Min Bodyweight Strength", thumbnailName: "workout5", youtubeURL: URL(string: "https://www.youtube.com/watch?v=UjwKKl157hw")!),
+        BodyVideo(title: "30 Min Full Body Dumbell", thumbnailName: "workout6", youtubeURL: URL(string: "https://www.youtube.com/watch?v=J0vYrFI4S6E")!),
+        BodyVideo(title: "15 Min Pilates", thumbnailName: "workout7", youtubeURL: URL(string: "https://www.youtube.com/watch?v=ZfCx3N5MG04")!),
+        BodyVideo(title: "10 Min Low Impact Cardio", thumbnailName: "workout8", youtubeURL: URL(string: "https://www.youtube.com/watch?v=4_b9rWBrvrM")!),
+        BodyVideo(title: "5 Min Power Abs", thumbnailName: "workout9", youtubeURL: URL(string: "https://www.youtube.com/watch?v=FHjxgyzJXPw")!),
+        BodyVideo(title: "5 Min Arm Workout", thumbnailName: "workout10", youtubeURL: URL(string: "https://www.youtube.com/watch?v=oQDqwErnVxU")!),
+        BodyVideo(title: "15 Min Ab Blast Workout", thumbnailName: "workout11", youtubeURL: URL(string: "https://www.youtube.com/watch?v=uXZEuSuLfJU")!),
+        BodyVideo(title: "10 Min Barre, Dance, and Strength", thumbnailName: "workout12", youtubeURL: URL(string: "https://www.youtube.com/watch?v=4hD-HnCjYcE")!)
     ]
-        
+    
     // Grid layout
     let columns = [
         GridItem(.flexible(), spacing: 20),
         GridItem(.flexible(), spacing: 20)
     ]
-        
+    
     var body: some View {
         ZStack {
             // Background color fills entire screen
@@ -43,7 +43,7 @@ struct MindView: View {
             
             VStack(spacing: 0) {
                 // Header fixed at the top
-                Text("Set Your Mind Right")
+                Text("Get In Shape")
                     .font(.title)
                     .bold()
                     .padding()
@@ -53,15 +53,15 @@ struct MindView: View {
                 
                 Spacer(minLength: 25)
                                 
-                Text("Because Mindfulness Matters.").font(.title2).bold()
+                Text("Because You Can.").font(.title2).bold()
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
-                Spacer(minLength: 5)
-                Text("Home for all your mental health needs.").font(.headline)
+                Spacer(minLength: 10)
+                Text("Fitness and physical activity\nimpact IBD symptoms.").font(.headline)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
-                Spacer(minLength: 5)
-                Text("Meditation, mindfulness, motivation, and more.").font(.subheadline)
+                Spacer(minLength: 10)
+                Text("Change Is Possible.").font(.subheadline)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
                 
@@ -89,16 +89,9 @@ struct MindView: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)
-                                            .foregroundColor(.white)
-                                            .opacity(0.85)
+                                            .foregroundColor(.gray)
+                                            .opacity(0.7)
                                     }
-                                        
-                                    Text(video.title)
-                                        .font(.subheadline)
-                                        .bold()
-                                        .multilineTextAlignment(.center)
-                                        .foregroundColor(.primary)
-                                        .padding(.top, 5)
                                 }
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -111,9 +104,9 @@ struct MindView: View {
         }
         .padding(.bottom, 10) // space above tab bar
     }
+    
 }
 
 #Preview {
-    MindView()
+    BodyView()
 }
-
