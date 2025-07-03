@@ -56,9 +56,11 @@ struct MindView: View {
                 Text("Because Mindfulness Matters.").font(.title2).bold()
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
+                Spacer(minLength: 5)
                 Text("Home for all your mental health needs.").font(.headline)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
+                Spacer(minLength: 5)
                 Text("Meditation, mindfulness, motivation, and more.").font(.subheadline)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
@@ -73,6 +75,7 @@ struct MindView: View {
                                 UIApplication.shared.open(video.youtubeURL)
                             }) {
                                 VStack {
+                                    Spacer()
                                     ZStack {
                                         Image(video.thumbnailName)
                                             .resizable()
@@ -103,9 +106,8 @@ struct MindView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
             }
-            Spacer()
         }
         .padding(.bottom, 10) // space above tab bar
     }
