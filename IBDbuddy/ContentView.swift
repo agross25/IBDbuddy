@@ -49,7 +49,7 @@ struct ContentView: View {
             BadgeView()
                 .background(Color.clear)
                 .tabItem {
-                    Label("Achievements", systemImage: "trophy")
+                    Label("Badges", systemImage: "medal")
                 }
                 .tag(4)
         }
