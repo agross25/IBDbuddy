@@ -13,28 +13,46 @@ struct LogView: View {
     @State private var calories: Int = 1500
     @State private var isHovering = false /// enables button to change when mouse hovers
     @EnvironmentObject var logManager: LogManager
+    @Environment(\.dismiss) var dismiss
     
     // @AppStorage("latestLog") private var latestLogData: Data = Data()
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             // Background color fills entire screen
             Color(red: 1.0, green: 0.74, blue: 0.55).opacity(0.4).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Header fixed at the top
-                Text("Your Daily Log")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color(red: 1.0, green: 0.9, blue: 0.8))
-                    .shadow(radius: 3)
-                
+                HStack {
+                    Spacer(minLength: 20)
+                    
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                    }
+
+                    Text("Your Daily Log")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .shadow(radius: 3)
+
+                    Spacer(minLength: 40) // pushes everything left
+                }
+                .background(Color(red: 1.0, green: 0.9, blue: 0.8))
+                .shadow(radius: 3)
+                //.padding(.top,60)
+                .ignoresSafeArea(.all)
+                                
                 Spacer()
                 
                 /// Header Rectangle with Date
                 ZStack {
+                    /// Today's date
                     RoundedRectangle(cornerRadius: 30)
                         .fill(Color(red: 1.0, green: 0.7, blue: 0.36).opacity(0.5))
                         .background(.ultraThinMaterial)
@@ -52,9 +70,11 @@ struct LogView: View {
                     
                 }
                 
+                Spacer()
+                
                 /// Main Daily Log Box
                 ZStack {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 30) {
                         Section(header: Text("How well did you take care of yourself today?")
                             .font(.title3)
                             .bold()
@@ -79,28 +99,14 @@ struct LogView: View {
                                 calories: calories
                             )
                             logManager.addLog(newLog) /// saves today's date
+                            dismiss()
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(isHovering ? .orange.opacity(0.8) : .orange)
+                        .tint(isHovering ? .orange.opacity(0.6) : .orange)
                         .onHover { hovering in isHovering = hovering }
                         .disabled(logManager.didLogToday) // disable if already logged
                         .padding(.top)
-                        
-                        /// Display message to user
-                        if logManager.didLogToday {
-                            Text("Thank you for logging today! 😊")
-                                .foregroundColor(.green)
-                        }
-                        else if let days = logManager.daysSinceLastLog {
-                            Text("It has been \(days) day\(days == 1 ? "" : "s") since your last log.")
-                                .foregroundColor(.orange)
-                        }
-                        
-                        Button("🔄 Reset Log Status") {
-                            logManager.resetTodayStatus()
-                        }
-                        .font(.caption)
-                        .padding(.top, 8)
+                        .bold()
                     }
                     .padding(.horizontal, 40)
                     .padding(.vertical)
@@ -108,7 +114,6 @@ struct LogView: View {
                 Spacer()
             }
         }
-        .padding(.bottom, 10) // space above tab bar
         /// as soon as VStack appears, checks log status
         .onAppear {
             _ = logManager.didLogToday
