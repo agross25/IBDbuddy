@@ -43,7 +43,7 @@ struct HomeView: View {
             }
             Spacer()
         }
-        .padding(.bottom, 20) // space above tab bar
+        .padding(.bottom, 10) // space above tab bar
         .onAppear {
             // Pull the very last log, if any, otherwise default mood:
             if let lastLog = logManager.logs.last {

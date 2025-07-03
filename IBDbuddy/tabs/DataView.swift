@@ -51,7 +51,7 @@ struct DataView: View {
                 logManager.generateMockWeek()
             }
         }
-        .padding(.bottom, 20)
+        .padding(.bottom, 10)
     }
 }
 
