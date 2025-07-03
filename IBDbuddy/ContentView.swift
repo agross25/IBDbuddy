@@ -34,12 +34,18 @@ struct ContentView: View {
                     Label("Mind", systemImage: "brain")
                 }
                 .tag(2)
+            BodyView()
+                .background(Color.clear)
+                .tabItem {
+                    Label("Body", systemImage: "figure.run")
+                }
+                .tag(3)
             DataView()
                 .background(Color.clear)
                 .tabItem {
                     Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
-                .tag(3)
+                .tag(4)
         }
         // Inject the manager into every child view:
         .environmentObject(logManager)
