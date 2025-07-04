@@ -43,7 +43,7 @@ struct BadgeView: View {
                         BadgeCard(title: "Listen to 5 Guided Meditations", progress: 3, goal: 5, icon: "airpods")
                         BadgeCard(title: "Make Buddy Happy for 3 Consecutive Days", progress: 3, goal: 3, icon: "face.smiling")
                         BadgeCard(title: "Take 6,000 Daily Steps for 7 Days", progress: 4, goal: 7, icon: "shoeprints.fill")
-                        BadgeCard(title: "Take 6,000 Daily Steps for 7 Days", progress: 4, goal: 7, icon: "shoeprints.fill")
+                        BadgeCard(title: "Opt In for Notifications", progress: 1, goal: 1, icon: "message.badge")
                     }
                     .padding()
                 }
