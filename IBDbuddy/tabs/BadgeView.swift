@@ -15,7 +15,7 @@ struct BadgeView: View {
             
             VStack(spacing: 0) {
                 // Header fixed at the top
-                Text("Your Achievements")
+                Text("Your Badges")
                     .font(.title)
                     .bold()
                     .padding()
@@ -36,7 +36,16 @@ struct BadgeView: View {
                 Spacer(minLength: 20)
                 
                 ScrollView(showsIndicators: false) {
-                    
+                    VStack(spacing: 20) {
+                        BadgeCard(title: "Log 7 Days in a Row", progress: 3, goal: 7, icon: "star.fill")
+                        BadgeCard(title: "Exercise 5 Times This Week", progress: 2, goal: 5, icon: "figure.run")
+                        BadgeCard(title: "Eat Under 2000 Calories for 3 Days", progress: 1, goal: 3, icon: "fork.knife")
+                        BadgeCard(title: "Listen to 5 Guided Meditations", progress: 3, goal: 5, icon: "airpods")
+                        BadgeCard(title: "Make Buddy Happy for 3 Consecutive Days", progress: 3, goal: 3, icon: "face.smiling")
+                        BadgeCard(title: "Take 6,000 Daily Steps for 7 Days", progress: 4, goal: 7, icon: "shoeprints.fill")
+                        BadgeCard(title: "Opt In for Notifications", progress: 1, goal: 1, icon: "message.badge")
+                    }
+                    .padding()
                 }
                 .padding(.horizontal)
             }
@@ -49,3 +58,5 @@ struct BadgeView: View {
 #Preview {
     BadgeView()
 }
+
+
