@@ -40,6 +40,9 @@ struct DataView: View {
                         SleepChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
                         ExerciseChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
                         CalorieChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
+                        MedsChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
+                        MoodChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
+                        MHChartView(weekLogs: weekLogs, formatter: weekdayFormatter)
                     }
                     .padding(.horizontal)
                     .padding(.bottom, 20)
