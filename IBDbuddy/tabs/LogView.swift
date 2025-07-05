@@ -11,12 +11,14 @@ struct LogView: View {
     @State private var sleepHours: Double = 7
     @State private var exerciseMins: Int = 0
     @State private var calories: Int = 1500
-    @State private var isHovering = false /// enables button to change when mouse hovers
+    @State private var tookMedication: Bool = false
+    @State private var moodRating: Int = 5
+    @State private var mentalHealthMins: Int = 0
+
+    @State private var isHovering = false /// button changes when mouse hovers
     @EnvironmentObject var logManager: LogManager
     @Environment(\.dismiss) var dismiss
-    
-    // @AppStorage("latestLog") private var latestLogData: Data = Data()
-    
+        
     var body: some View {
         ZStack(alignment: .top) {
             // Background color fills entire screen
@@ -89,6 +91,13 @@ struct LogView: View {
                                 Stepper(value: $calories, in: 0...4000, step: 100) {
                                     Text("Calories: \(calories) cals")
                                 }
+                                Toggle("Took Medication Today", isOn: $tookMedication)
+                                Stepper(value: $moodRating, in: 1...10) {
+                                    Text("Mood Rating: \(moodRating)/10")
+                                }
+                                Stepper(value: $mentalHealthMins, in: 0...120, step: 5) {
+                                    Text("Mental Health Time: \(mentalHealthMins) mins")
+                                }
                             }
                         
                         Button("Save Log") {
@@ -96,7 +105,10 @@ struct LogView: View {
                                 date: Date(),
                                 sleepHours: sleepHours,
                                 exerciseMins: exerciseMins,
-                                calories: calories
+                                calories: calories,
+                                tookMedication: tookMedication,
+                                moodRating: moodRating,
+                                mentalHealthMins: mentalHealthMins
                             )
                             logManager.addLog(newLog) /// saves today's date
                             dismiss()

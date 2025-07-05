@@ -50,7 +50,7 @@ struct HomeView: View {
                 // Logging Section
                 VStack(spacing: 12) {
                     // Save Log Button
-                    Button("Go To Daily Log") {
+                    Button("Go To Today's Log") {
                         showLogView = true
                     }
                     .buttonStyle(.borderedProminent)

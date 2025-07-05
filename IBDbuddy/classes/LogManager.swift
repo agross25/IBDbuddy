@@ -46,13 +46,31 @@ class LogManager: ObservableObject {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
 
-        return (0..<7).compactMap { offset in
-            let day = calendar.date(byAdding: .day, value: -offset, to: today)!
+        return (0..<7).compactMap { offset -> DailyLog in
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: today) else {
+                return DailyLog(
+                    date: Date(),
+                    sleepHours: 0,
+                    exerciseMins: 0,
+                    calories: 0,
+                    tookMedication: false,
+                    moodRating: 0,
+                    mentalHealthMins: 0
+                )
+            }
+
             let match = logs.first { calendar.isDate($0.date, inSameDayAs: day) }
-            return match ?? DailyLog(date: day, sleepHours: 0, exerciseMins: 0, calories: 0)
+            return match ?? DailyLog(
+                date: day,
+                sleepHours: 0,
+                exerciseMins: 0,
+                calories: 0,
+                tookMedication: false,
+                moodRating: 0,
+                mentalHealthMins: 0
+            )
         }.reversed()
     }
-
     
     // - - - Functions - - -
     
@@ -87,22 +105,25 @@ class LogManager: ObservableObject {
         }
     }
     
-    /// Fills log array for testing
     func generateMockWeek() {
         let calendar = Calendar.current
-        logs = (0..<7).map { offset in /// Creates 7-day range, maps each number as a DailyLog
+
+        logs = (0..<7).map { offset in
             let date = calendar.date(byAdding: .day, value: -offset, to: Date())!
-            /// subtracts offsets days from today
+
             return DailyLog(
-                /// sets random values for some days, some set to 0
                 date: date,
-                sleepHours: offset == 1 ? 0 : Double.random(in: 5...9),
-                exerciseMins: offset == 2 ? 0 : Int.random(in: 0...60),
-                calories: offset == 3 ? 0 : Int.random(in: 1500...2500)
+                sleepHours: Double.random(in: 4...9),
+                exerciseMins: Int.random(in: 0...60),
+                calories: Int.random(in: 1500...2500),
+                tookMedication: Bool.random(),
+                moodRating: Int.random(in: 2...9),
+                mentalHealthMins: Int.random(in: 0...45)
             )
-        }.reversed() /// places oldest day first, latest day last
-            
-        saveLogs() /// saves to UserDefaults - not needed for testing
+        }.reversed() // oldest first, latest last
+
+        saveLogs() // persist to UserDefaults if needed
     }
+
 
 }
